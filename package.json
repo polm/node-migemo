@@ -1,0 +1,23 @@
+{
+  "name": "node-migemo",
+  "version": "0.0.1",
+  "description": "migemo Japanese search for Node",
+  "main": "lib/migemo.js",
+  "scripts": {
+    "test": "false"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/polm/node-migemo.git"
+  },
+  "keywords": [
+    "migemo",
+    "japanese"
+  ],
+  "author": "23",
+  "license": "WTFPL",
+  "bugs": {
+    "url": "https://github.com/polm/node-migemo/issues"
+  },
+  "homepage": "https://github.com/polm/node-migemo#readme"
+}
