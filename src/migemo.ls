@@ -65,6 +65,9 @@ hira-to-hwkata = (hira) ->
 export to-regex = (roma) ->
   # assumes case insensitive
   hira = to-hiragana roma
+  # if there's an isolated romaji on the end, strip it to avoid flickering 
+  # in interactive search
+  hira = hira.replace /[a-z]$/, ''
   kata = hira-to-kata hira
   hwkata = hira-to-hwkata hira
   kanji =  hira-to-kanji hira
