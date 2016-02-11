@@ -55,7 +55,7 @@ export prune = (words) ->
 
 hira-to-kanji = (hira) ->
   if reading2kanji[hira]?.rapid
-    return readin2kanji[hira].rapid
+    return reading2kanji[hira].rapid
   prune find-in-tree hira, reading2kanji
 
 hira-to-kata = (hira) ->
