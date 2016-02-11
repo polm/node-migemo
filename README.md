@@ -2,6 +2,11 @@
 
 This is a re-implementation of [migemo](http://0xcc.net/migemo/) in NodeJS. Migemo is a tool for generating regular expressions for Japanese based on romaji input.
 
+There are a few differences from most other migemos:
+
+- The dictionary is based on Edict2, not SKK
+- kana conversion is pessimistic ("pand" -> "パン", not "パン[ダヂヅデド]")
+
 # License
 
 The code I have written is released under the WTFPL, do as you like. **However, please note the dictionary file is based on edict2 and subject to its terms.** I understand this as basically CC-BY-SA-3.0, but please see [here](http://www.edrdg.org/jmdict/edict.html). 
