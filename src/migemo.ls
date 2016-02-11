@@ -54,7 +54,13 @@ export prune = (words) ->
 # assume external interface will primarily take romaji
 # internally though hiragana is the canonical form
 
-hira-to-kanji = (hira) ->
+memoize-unary = (f) ->
+  cache = {}
+  return (a) ->
+    if cache[a] then return cache[a]
+    cache[a] = f a
+
+hira-to-kanji = memoize-unary (hira) ->
   if reading2kanji[hira]?.rapid
     return reading2kanji[hira].rapid
   prune find-in-tree hira, reading2kanji
