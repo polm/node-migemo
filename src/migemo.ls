@@ -27,6 +27,7 @@ find-in-tree = (reading, tree) ->
       node = node[ll]
     catch
       return [] # no such reading in our dict
+  if not node then return []
   # now recursive
   q = [node]
   out = []
