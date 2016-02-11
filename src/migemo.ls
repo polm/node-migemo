@@ -19,6 +19,7 @@ export to-kanji = (roma) ->
   return (hira-to-kanji to-hiragana roma).join \|
 
 export find-in-tree = (reading, tree) ->
+  if reading == '' then return [] # don't try empty string
   letters = reading.split ''
   node = tree
   # first find the minimum
@@ -70,6 +71,8 @@ export to-regex = (roma) ->
   # if there's an isolated romaji on the end, strip it to avoid flickering 
   # in interactive search
   hira = hira.replace /[a-z]$/, ''
+  if hira == ''
+    return new RegExp(roma, \i) # nothing to match with
   kata = hira-to-kata hira
   hwkata = hira-to-hwkata hira
   kanji =  hira-to-kanji hira
