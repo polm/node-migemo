@@ -1,5 +1,8 @@
 # this converts a utf8 edict2 to a reading -> word mapping
 
+{prune,find-in-tree} = require \../lib/migemo
+{hiragana} = require \../lib/mapping
+
 export read-stdin-as-lines-then = (func) ->
   buf = ''
   process.stdin.set-encoding \utf-8
@@ -53,7 +56,15 @@ dict2tree = (dict) ->
     lt.w = lt.w.concat val
   return tree
 
+add-quick-readings = (dict) ->
+  # conversions for single kana are slow, so cache them
+  for hira in hiragana
+    if not dict[hira] then continue # for unusual ones
+    if dict[hira].rapid then continue # already did it
+    dict[hira].rapid = prune find-in-tree hira, dict
+  return dict
+
 read-stdin-as-lines-then ->
   it.map get-reading-pair
-  console.log JSON.stringify dict2tree reading2kanji
+  console.log JSON.stringify add-quick-readings dict2tree reading2kanji
 

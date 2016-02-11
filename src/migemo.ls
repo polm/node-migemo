@@ -18,7 +18,7 @@ export to-half-width-katakana = (roma) ->
 export to-kanji = (roma) ->
   return (hira-to-kanji to-hiragana roma).join \|
 
-find-in-tree = (reading, tree) ->
+export find-in-tree = (reading, tree) ->
   letters = reading.split ''
   node = tree
   # first find the minimum
@@ -40,7 +40,7 @@ find-in-tree = (reading, tree) ->
       q.push value
   return out
 
-prune = (words) ->
+export prune = (words) ->
   if words.length == 0 then return []
   words.sort!
   out = [words.shift!]
@@ -54,6 +54,8 @@ prune = (words) ->
 # internally though hiragana is the canonical form
 
 hira-to-kanji = (hira) ->
+  if reading2kanji[hira]?.rapid
+    return readin2kanji[hira].rapid
   prune find-in-tree hira, reading2kanji
 
 hira-to-kata = (hira) ->
