@@ -36,7 +36,24 @@ get-reading-pair = (line) ->
     reading2kanji[reading] = []
   reading2kanji[reading].push kanji
 
+# input format: dictionary of (hiragana reading -> list of kanji forms)
+dict2tree = (dict) ->
+  # w is words that match exactly
+  # c is children (longer words with this prefix)
+  tree = {}
+  for key,val of dict
+    letters = key.split ''
+    lt = tree # local tree
+    while letters.length > 0
+      head = letters.shift!
+      if not lt[head] then lt[head] = {}
+      lt = lt[head]
+    # got to our end node
+    if not lt.w then lt.w = [] # initialize if needed
+    lt.w = lt.w.concat val
+  return tree
+
 read-stdin-as-lines-then ->
   it.map get-reading-pair
-  console.log JSON.stringify  reading2kanji
+  console.log JSON.stringify dict2tree reading2kanji
 
