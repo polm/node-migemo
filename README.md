@@ -1,11 +1,14 @@
 # node-migemo
 
-This is a re-implementation of [migemo](http://0xcc.net/migemo/) in NodeJS. Migemo is a tool for generating regular expressions for Japanese based on romaji input.
+This is a re-implementation of [migemo](http://0xcc.net/migemo/) in NodeJS. Migemo is a tool for generating regular expressions for Japanese based on romaji input. Wapuro style input (and therefore most of Kunreishiki and Hepburn) is supported.
 
-There are a few differences from most other migemos:
+![migemo demo using searchy](http://i.imgur.com/iAxM94P.gif)
 
-- The dictionary is based on Edict2, not SKK
-- kana conversion is pessimistic ("pand" -> "パン", not "パン[ダヂヅデド]")
+Unlike other migemos, the dictionary is based on Edict2, not SKK, which solves some problems but creates others.
+
+To start using it right away, install together with [searchy](https://www.npmjs.com/package/searchy).
+
+    npm install -g node-migemo searchy
 
 # License
 
