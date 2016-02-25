@@ -25,7 +25,20 @@ console.log migemo.to-regex \toukyou
 console.log migemo.to-regex \shizen
 console.log migemo.to-hiragana \pand
 console.log migemo.to-regex \pand
+console.log migemo.to-regex \kouko
+console.log migemo.to-regex \kouk
+console.log migemo.to-regex \danna
+console.log migemo.to-regex \dana
+console.log migemo.to-regex \dan
 console.log migemo.to-regex \ibara
 console.log migemo.to-regex \toge
 console.log migemo.to-regex \touge
+console.log migemo.to-regex \ho
+console.log migemo.to-regex \kan
+console.log migemo.to-regex \kai
+console.log migemo.to-regex \kai
+console.log migemo.to-regex \kai
+console.log migemo.to-regex \i
+console.log migemo.to-regex \k
+console.log migemo.to-regex \k
 
