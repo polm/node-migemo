@@ -2,6 +2,7 @@ migemo = require \./lib/migemo
 
 {hiragana, katakana, hwkatakana, romaji} = require \./lib/mapping
 
+
 assert = (a, b, check) ->
   if a != b then console.error "failed: #check, #a != #b"
   else console.log "ok: #a == #b"
@@ -9,6 +10,7 @@ assert = (a, b, check) ->
 assert hiragana.length, romaji.length, "roma == hiragana"
 assert hiragana.length, katakana.length, "kata == hiragana"
 assert hiragana.length, hwkatakana.length, "hwkata == hiragana"
+
 
 assert (migemo.to-hiragana \panda), \ぱんだ, "panda converts"
 assert (migemo.to-katakana \panda), \パンダ, "panda converts"
@@ -40,5 +42,6 @@ console.log migemo.to-regex \kai
 console.log migemo.to-regex \kai
 console.log migemo.to-regex \i
 console.log migemo.to-regex \k
-console.log migemo.to-regex \k
+console.log migemo.to-regex \m
+
 
