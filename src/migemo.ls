@@ -63,6 +63,16 @@ memoize-unary = (f) ->
 hira-to-kanji = memoize-unary (hira) ->
   if reading2kanji[hira]?.rapid
     return reading2kanji[hira].rapid
+  # handle split cases specially
+  # NOTE: this assumes no brackets in the needle,
+  # which is not necessarily safe. 
+  if hira[*-1] == \]
+    [head, tails] = hira.split(\[)
+    tails = tails.substr 0, tails.length - 1 # trim end bracket
+    out = []
+    for tail in tails
+      out = out.concat prune find-in-tree (head + tail), reading2kanji
+    return out
   prune find-in-tree hira, reading2kanji
 
 hira-to-kata = (hira) ->
@@ -87,6 +97,9 @@ export to-regex = (roma) ->
   return new RegExp(regstring, \i)
 
 get-next-hiragana = (roma) ->
+  # if it's an "n" and the last char, include possible expansions
+  if roma == "n"
+    return ['[んなにぬねの]', roma]
   # longest conversion is 4 (xtsu for example)
   for ll from 4 to 1 by -1
     short = roma.substr 0, ll
@@ -95,7 +108,6 @@ get-next-hiragana = (roma) ->
   # if we can't find anything - check for sokuon consonant doubling
   if roma.length > 1 and roma.0 == roma.1
     return [ \っ, roma.0 ]
-  /*
   # if it's the last character and a consonant, try all completions
   if roma.length == 1 and -1 == "aeiou".index-of roma.0
     out = "["
@@ -105,7 +117,6 @@ get-next-hiragana = (roma) ->
         out += hiragana[index]
     if out.length > 1
       return [ out + "]", roma[0] ]
-  */
   # total failure, so just pop off the first char
   return [roma[0], roma[0]]
 
