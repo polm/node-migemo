@@ -3,6 +3,9 @@ reading2kanji = require \../data/jisho.json
 
 export to-hiragana = (roma) ->
   hira = ''
+  # don't try to convert singles
+  if roma.length == 1
+    if roma == "n" then return \ん else return roma
   while roma.length > 0
     [nh, ro] = get-next-hiragana roma
     hira += nh
