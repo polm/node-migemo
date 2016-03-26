@@ -1,5 +1,5 @@
 {
-  "name": "node-migemo",
+  "name": "migemo",
   "version": "0.1.7",
   "description": "migemo Japanese search for Node",
   "main": "lib/migemo.js",
