@@ -8,7 +8,7 @@ Unlike other migemos, the dictionary is based on Edict2, not SKK, which solves s
 
 To start using it right away, install together with [searchy](https://www.npmjs.com/package/searchy).
 
-    npm install -g node-migemo searchy
+    npm install -g migemo searchy
 
 # License
 
